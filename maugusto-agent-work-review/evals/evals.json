@@ -1,0 +1,26 @@
+{
+  "skill_name": "maugusto-agent-work-review",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Review the committed changes in the auth-project against the PRD. The PRD is at docs/prd-auth.md. Review all commits.",
+      "expected_output": "A review .md file that identifies: incomplete password validation (missing uppercase/number check), bcrypt salt rounds wrong (10 instead of 12), login endpoint leaks user existence, missing rate limiting/account lockout, missing password reset entirely, missing token refresh endpoint, missing welcome email, hardcoded JWT secret, weak test coverage (TODOs in tests), missing HTTPS enforcement, missing audit logging, missing integration tests.",
+      "files": [],
+      "fixture_path": "evals/fixtures/auth-project"
+    },
+    {
+      "id": 2,
+      "prompt": "I have a project at evals/fixtures/auth-project. An agent was supposed to implement user auth per docs/prd-auth.md. Check the uncommitted changes and recent commits — I think the agent said it was done but I'm not sure it actually is.",
+      "expected_output": "A review .md file with a requirements coverage table showing which of R1-R5 are complete/partial/missing, plus specific findings with file:line references for each gap. Should flag that the agent claimed completion but significant work remains (password reset, rate limiting, token refresh, proper tests).",
+      "files": [],
+      "fixture_path": "evals/fixtures/auth-project"
+    },
+    {
+      "id": 3,
+      "prompt": "Re-review the auth project. The agent says it fixed everything from the last review. Check if the issues are actually resolved.",
+      "expected_output": "A re-review document that references previous findings and checks each one. Since no actual fixes were made in this test scenario, it should report that findings are not resolved (or note that there's no previous review to reference and do a fresh review instead).",
+      "files": [],
+      "fixture_path": "evals/fixtures/auth-project"
+    }
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "skill_name": "maugusto-agent-tracker",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "I'm running 3 agent chats in parallel right now and I keep losing track of what each one is doing. Can you help me track progress on this current session? I'm working on implementing a payment integration and I want to see where things stand.",
+      "expected_output": "A progress.json state file and dashboard.html showing the current session's progress with phases (research, planning, implementation, testing), task checklist, files changed, and metrics. The agent should initialize tracking and explain how to keep it updated.",
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "I just finished a big refactoring task and want to create a progress report to show my team what was done. The session took about 2 hours, we modified 15 files, encountered 3 errors that were all resolved, and completed all 12 tasks. Generate a dashboard showing this.",
+      "expected_output": "A complete progress.json with all tasks marked as done, all errors with resolutions, file changes logged, and accurate metrics. The dashboard.html should show 100% completion across all phases.",
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "I'm halfway through building a new feature and hit a blocker. The database migration is failing and I'm not sure how to fix it. Can you track this session and make sure the error is logged? I've completed 5 out of 8 tasks so far.",
+      "expected_output": "A progress.json showing the current phase as 'implementation' with ~60% progress, 5 tasks done, 3 pending, and the database migration error logged in the errors section without a resolution yet. The dashboard should visually highlight the blocker.",
+      "files": []
+    }
+  ]
+}
