@@ -4,19 +4,31 @@
     {
       "id": 1,
       "prompt": "I'm running 3 agent chats in parallel right now and I keep losing track of what each one is doing. Can you help me track progress on this current session? I'm working on implementing a payment integration and I want to see where things stand.",
-      "expected_output": "A progress.json state file and dashboard.html showing the current session's progress with phases (research, planning, implementation, testing), task checklist, files changed, and metrics. The agent should initialize tracking and explain how to keep it updated.",
+      "expected_output": "A ~/.agent-tracker/<id>.json state file with the new schema (id, name, status, tasks object with counts + items, timeline array, errors with type/message/resolved/context). Running generate_dashboard.py should produce fleet.html and agent-<id>.html in ~/.agent-tracker/output/. The agent should explain the multi-agent workflow.",
       "files": []
     },
     {
       "id": 2,
-      "prompt": "I just finished a big refactoring task and want to create a progress report to show my team what was done. The session took about 2 hours, we modified 15 files, encountered 3 errors that were all resolved, and completed all 12 tasks. Generate a dashboard showing this.",
-      "expected_output": "A complete progress.json with all tasks marked as done, all errors with resolutions, file changes logged, and accurate metrics. The dashboard.html should show 100% completion across all phases.",
+      "prompt": "I have 3 agents running: one doing auth-service, one doing frontend-redesign, and one doing data-migration. Show me the fleet dashboard with all of them.",
+      "expected_output": "Three JSON files in ~/.agent-tracker/ (auth-service.json, frontend-redesign.json, data-migration.json), each with the new schema. Running the script should generate fleet.html showing all 3 agents in a card grid with metrics, plus 3 agent-*.html detail pages with tabbed interfaces.",
       "files": []
     },
     {
       "id": 3,
-      "prompt": "I'm halfway through building a new feature and hit a blocker. The database migration is failing and I'm not sure how to fix it. Can you track this session and make sure the error is logged? I've completed 5 out of 8 tasks so far.",
-      "expected_output": "A progress.json showing the current phase as 'implementation' with ~60% progress, 5 tasks done, 3 pending, and the database migration error logged in the errors section without a resolution yet. The dashboard should visually highlight the blocker.",
+      "prompt": "I just finished a big refactoring task and want to create a progress report. The session took about 2 hours, we modified 15 files, encountered 3 errors that were all resolved, and completed all 12 tasks. Generate a dashboard showing this.",
+      "expected_output": "A complete agent JSON with status 'done', all 12 tasks marked done, all errors with resolved: true, 15 files_changed entries with lines counts, and accurate metrics. The fleet dashboard should show this agent as Completed with green status pill. The detail page should show 100% on all phases.",
+      "files": []
+    },
+    {
+      "id": 4,
+      "prompt": "One of my agents is blocked on a database migration error and another is still running. Can you track both and make sure the blockers are visible on the fleet dashboard?",
+      "expected_output": "Two agent JSON files: one with status 'blocked' and an unresolved error (resolved: false), another with status 'running'. The fleet dashboard should show the Blocked metric card with alert styling (red border), and the blocked agent card should have a red left border. The detail page should show the error in the Errors tab as unresolved.",
+      "files": []
+    },
+    {
+      "id": 5,
+      "prompt": "I want to see a timeline of everything that happened across my auth-service agent session. It had 10 events including some errors and file creations.",
+      "expected_output": "An agent JSON with a timeline array containing 10 events with time, text, and type fields (accent, success, danger, info). The detail page Timeline tab should render all events in a vertical timeline with colored dots.",
       "files": []
     }
   ]
